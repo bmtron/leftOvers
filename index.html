@@ -8,9 +8,19 @@
         <link href="recipe.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <input class="input">
-        <button>Click</button>
-        <section class="test"><p class="testp"></p></section>
+        <form class="food-search">
+            <fieldset class="protein-search">
+                <label name="protein-search">Enter your protein of choice</label>
+                <input name="protein-search" class="protein" id="protein-search" type="text" placeholder="Chicken, beef, shrimp, etc.">
+                <button class="find-recipes">Find a recipe</button>
+            </fieldset>
+        </form>
+        <p class="name"></p>
+        <p class="servings"></p>
+        <p class="cal"></p>
+        <p class="prep"></p>
+        <ul class="ingredients"></ul>
+        <p class="instructions"></p>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="recipe.js"></script>
     </body>

@@ -1,0 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+.protein-search {
+    display: flex;
+    flex-direction: column;
+}
