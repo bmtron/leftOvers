@@ -20,7 +20,8 @@ function getRandomRecipe(input) {
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${input}&number=50`;
         fetch(url, HEAD)
         .then(response => response.json())
-        .then(responseJson => getRecipeInformationById(responseJson));
+        .then(responseJson => getRecipeInformationById(responseJson))
+        .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
 }
 function getRecipeInformationById(responseJson) {
     let rand = generateRandomNumber();
@@ -28,7 +29,8 @@ function getRecipeInformationById(responseJson) {
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
     .then(response => response.json())
-    .then(responseJson => displayRecipeInformation(responseJson));
+    .then(responseJson => displayRecipeInformation(responseJson))
+    .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 
 }
 function displayRecipeInformation(responseJson) {
@@ -36,6 +38,7 @@ function displayRecipeInformation(responseJson) {
     $('.servings').text(`Servings: ${responseJson.servings}`);
     $('.cal').text(`Calories per serving: ${responseJson.nutrition.nutrients[0].amount}`);
     $('.prep').text(`Time: ${responseJson.readyInMinutes} minutes`);
+    $('.ingredients-title').text('Ingredients:');
     for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
         $('.ingredients').append(`<li class="remove">${responseJson.extendedIngredients[i].originalString}</li>`);
     }
@@ -46,6 +49,7 @@ function emptyResults() {
     $('.name').empty();
     $('.servings').empty();
     $('.cal').empty();
+    $('.ingredients-title').empty();
     $('.prep').empty();
     $('.instructions').empty();
     $('.remove').remove();
