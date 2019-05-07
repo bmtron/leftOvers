@@ -10,6 +10,7 @@ const HEAD = {
 function handleSearch() {
     $('.find-recipes').click(event => {
         event.preventDefault();
+        emptyResults();
         let protein = $('.protein').val();
         getRandomRecipe(protein);
         $('.protein').val("");
@@ -36,9 +37,18 @@ function displayRecipeInformation(responseJson) {
     $('.cal').text(`Calories per serving: ${responseJson.nutrition.nutrients[0].amount}`);
     $('.prep').text(`Time: ${responseJson.readyInMinutes} minutes`);
     for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
-        $('.ingredients').append(`<li>${responseJson.extendedIngredients[i].originalString}</li>`);
+        $('.ingredients').append(`<li class="remove">${responseJson.extendedIngredients[i].originalString}</li>`);
     }
     $('.instructions').text(`Cooking Instructions: ${responseJson.instructions}`);
+    $('.results').append(`<img class="remove" src="${responseJson.image}" height="100" width="100">`);
+}
+function emptyResults() {
+    $('.name').empty();
+    $('.servings').empty();
+    $('.cal').empty();
+    $('.prep').empty();
+    $('.instructions').empty();
+    $('.remove').remove();
 }
 function generateRandomNumber() {
     let rand = Math.floor(Math.random() * 50);
