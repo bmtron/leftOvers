@@ -33,6 +33,15 @@ function getRecipeInformationById(responseJson) {
     .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 
 }
+function getRecipeFromIngredientsById(responseJson) {
+    let rand = generateRandomNumber();
+    let recipeId = responseJson[rand].id;
+    let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
+    fetch(url, HEAD)
+    .then(response => response.json())
+    .then(responseJson => displayRecipeInformation(responseJson))
+    .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
+}
 function displayRecipeInformation(responseJson) {
     $('.name').text(`${responseJson.title}`);
     $('.servings').text(`Servings: ${responseJson.servings}`);
@@ -42,7 +51,7 @@ function displayRecipeInformation(responseJson) {
     for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
         $('.ingredients').append(`<li class="remove">${responseJson.extendedIngredients[i].originalString}</li>`);
     }
-    $('.instructions').text(`Cooking Instructions: ${responseJson.instructions}`);
+    $('.instructions').append(`Cooking Instructions: ${responseJson.instructions}`);
     $('.results').append(`<img class="remove" src="${responseJson.image}" height="100" width="100">`);
 }
 function emptyResults() {
@@ -51,11 +60,40 @@ function emptyResults() {
     $('.cal').empty();
     $('.ingredients-title').empty();
     $('.prep').empty();
+    $('.err').empty();
     $('.instructions').empty();
     $('.remove').remove();
+}
+function handleIngredientSearch() {
+	$('.ingsearch').click(event => {
+		event.preventDefault();
+		emptyResults();
+		let ingredients = $('.ingredients').val();
+		getIngredients(ingredients);
+		$('.ingredients').val("");
+	});
+}
+function getIngredients(input) {
+	let ingredients = input;
+	let arrayInput = ingredients.split(', ');
+	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=50&ranking=1&ignorePantry=true&ingredients=';
+	let newUrl = url;
+	for (let i = 0; i < arrayInput.length; i++) {
+		if (i === arrayInput.length - 1) {
+		newUrl = newUrl + arrayInput[i];
+		}
+		else {
+		newUrl = newUrl + arrayInput[i] + '%2C';
+		}
+    }
+    console.log(newUrl);
+	fetch(newUrl, HEAD)
+	.then(response => response.json())
+	.then(responseJson => getRecipeFromIngredientsById(responseJson));
 }
 function generateRandomNumber() {
     let rand = Math.floor(Math.random() * 50);
     return rand;
 }
+$(handleIngredientSearch);
 $(handleSearch);
