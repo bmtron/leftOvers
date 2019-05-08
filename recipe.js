@@ -17,7 +17,7 @@ function handleSearch() {
     });
 }
 function getRandomRecipe(input) {
-    let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${input}&number=50`;
+    let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${input}&number=20`;
         fetch(url, HEAD)
         .then(response => response.json())
         .then(responseJson => getRecipeInformationById(responseJson))
@@ -34,8 +34,7 @@ function getRecipeInformationById(responseJson) {
 
 }
 function getRecipeFromIngredientsById(responseJson) {
-    let rand = generateRandomNumber();
-    let recipeId = responseJson[rand].id;
+    let recipeId = responseJson[0].id;
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
     .then(response => response.json())
@@ -76,7 +75,7 @@ function handleIngredientSearch() {
 function getIngredients(input) {
 	let ingredients = input;
 	let arrayInput = ingredients.split(', ');
-	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=50&ranking=1&ignorePantry=true&ingredients=';
+	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=true&ingredients=';
 	let newUrl = url;
 	for (let i = 0; i < arrayInput.length; i++) {
 		if (i === arrayInput.length - 1) {
@@ -89,7 +88,8 @@ function getIngredients(input) {
     console.log(newUrl);
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
-	.then(responseJson => getRecipeFromIngredientsById(responseJson));
+    .then(responseJson => getRecipeFromIngredientsById(responseJson))
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
 }
 function generateRandomNumber() {
     let rand = Math.floor(Math.random() * 50);
