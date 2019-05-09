@@ -6,6 +6,8 @@ const HEAD = {
     'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
     }
 }
+let recipeInfo = [];
+let COUNT = 0;
 let USERINPUT = [];
 function handleSearch() {
     $('.find-recipes').click(event => {
@@ -13,6 +15,14 @@ function handleSearch() {
         emptyResults();
         getRandomRecipe();
         $('.protein').val("");
+    });
+}
+function handleNext(){
+    $('.next').click(event => {
+        event.preventDefault();
+        emptyResults();
+        COUNT++;
+        console.log(COUNT);
     });
 }
 function handleAdd() {
@@ -41,7 +51,7 @@ function getRandomRecipeInformationById(responseJson) {
 
 }
 function getRecipeFromIngredientsById(responseJson) {
-    let recipeId = responseJson[0].id;
+    let recipeId = responseJson[COUNT].id;
     checkForPurchased(responseJson);
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
@@ -80,7 +90,7 @@ function handleIngredientSearch() {
 }
 function getIngredients(input) {
 	
-	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=';
+	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&ignorePantry=false&ingredients=';
 	let newUrl = url;
 	for (let i = 0; i < input.length; i++) {
 		if (i === input.length - 1) {
@@ -90,13 +100,14 @@ function getIngredients(input) {
 		newUrl = newUrl + input[i] + '%2C';
 		}
     }
-    let userArray = input;
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
-    .then(responseJson => getRecipeFromIngredientsById(responseJson, userArray))
+    .then(responseJson => getRecipeFromIngredientsById(responseJson))
     .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
 }
-
+function getRecipeInfo(responseJson) {
+    recipeInfo = responseJson;
+}
 function checkForPurchased(responseJson) {
     console.log(responseJson);
     let unused = responseJson[0].unusedIngredients;
@@ -113,6 +124,7 @@ function checkForPurchased(responseJson) {
         $('.ingredients').append(`<li class="remove">${missing[i].originalString}****</li>`);
     }
 }
+$(handleNext);
 $(handleAdd);
 $(handleIngredientSearch);
 $(handleSearch);
