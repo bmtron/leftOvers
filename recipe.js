@@ -6,13 +6,23 @@ const HEAD = {
     'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
     }
 }
-
+const USERINPUT = [];
 function handleSearch() {
     $('.find-recipes').click(event => {
         event.preventDefault();
         emptyResults();
         getRandomRecipe();
         $('.protein').val("");
+    });
+}
+function handleAdd() {
+    $('.add').click(event => {
+        event.preventDefault();
+        USERINPUT.push($('#ingredient-search').val());
+        let test = $('#ingredient-search').val();
+        $('.add-section').append(`<p>${test}`);
+        $('#ingredient-search').val(" ");
+        console.log(USERINPUT);
     });
 }
 function getRandomRecipe() {
@@ -36,7 +46,7 @@ function getRecipeFromIngredientsById(responseJson, userInput) {
     fetch(url, HEAD)
     .then(response => response.json())
     .then(responseJson => displayRecipeInformation(responseJson, userInput))
-    /*.catch(err => {$('.err').text(`Something is wrong: ${err.message}`)})*/;
+    .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 }
 function displayRecipeInformation(responseJson, userInput) {
     $('.name').text(`${responseJson.title}`);
@@ -85,23 +95,39 @@ function getIngredients(input) {
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
     .then(responseJson => getRecipeFromIngredientsById(responseJson, userArray))
-    /*.catch(err => {$('.err').text(`Something went wrong: ${err.message}`)})*/;
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
 }
-function generateRandomNumber() {
-    let rand = Math.floor(Math.random() * 50);
-    return rand;
-}
+
 function checkForPurchased(ingredient, userInput) {
+    console.log(ingredient);
+    const finalPurchased = [];
+    let newIngredient;
     for (let i = 0; i < ingredient.length; i++) {
-        for(let k = 0; k < userInput.length; k++) {
-            if (ingredient[i] === userInput[k]) {
-                $('.ingredients').append(`<li class="remove test">${ingredient.extendedIngredients[i].originalString}</li>`)
+        let splitName = ingredient[i].name.split(" ");
+        for(let k = 0; k < splitName.length; k++) {
+            for(let j = 0; j < userInput.length; j++) {
+                if (userInput[j] === splitName[k] || userInput[j] + 's' === splitName[k]) {
+                    finalPurchased.push(ingredient[i].originalString);
+                    ingredient.splice(i, 1);
+                }
             }
-            /*else {
-                $('.ingredients').append(`<li class="remove test">${ingredient.extendedIngredients[i].originalString}***</li>`)
-            }*/
         }
     }
+    console.log(finalPurchased);
+    
+    addPurchasedIngredients(finalPurchased);
+    addMissingIngredients(ingredient);
 }
+function addPurchasedIngredients(hasIng) {
+    for (let i = 0; i < hasIng.length; i++) {
+        $('.ingredients').append(`<li class="remove">${hasIng[i]}</li>`);
+    }
+}
+function addMissingIngredients(ingredient) {
+    for (let i = 0; i < ingredient.length; i++) {
+        $('.ingredients').append(`<li class="remove">${ingredient[i].originalString}****</li>`);
+    }
+}
+$(handleAdd);
 $(handleIngredientSearch);
 $(handleSearch);

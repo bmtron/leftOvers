@@ -1,11 +1,9 @@
 * {
     box-sizing: border-box;
 }
-.protein-search {
+
+.ingr-search-field {
     display: flex;
     flex-direction: column;
-}
-.ingredients-search-field {
-    display: flex;
-    flex-direction: column;
+    width: 50%;
 }
