@@ -6,7 +6,7 @@ const HEAD = {
     'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
     }
 }
-const USERINPUT = [];
+let USERINPUT = [];
 function handleSearch() {
     $('.find-recipes').click(event => {
         event.preventDefault();
@@ -20,8 +20,8 @@ function handleAdd() {
         event.preventDefault();
         USERINPUT.push($('#ingredient-search').val());
         let test = $('#ingredient-search').val();
-        $('.add-section').append(`<p>${test}`);
-        $('#ingredient-search').val(" ");
+        $('.add-section').append(`<p class="remove">${test}</p>`);
+        $('#ingredient-search').val("");
         console.log(USERINPUT);
     });
 }
@@ -40,25 +40,26 @@ function getRandomRecipeInformationById(responseJson) {
     .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 
 }
-function getRecipeFromIngredientsById(responseJson, userInput) {
+function getRecipeFromIngredientsById(responseJson) {
     let recipeId = responseJson[0].id;
+    checkForPurchased(responseJson);
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
     .then(response => response.json())
-    .then(responseJson => displayRecipeInformation(responseJson, userInput))
+    .then(responseJson => displayRecipeInformation(responseJson))
     .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 }
-function displayRecipeInformation(responseJson, userInput) {
+function displayRecipeInformation(responseJson) {
     $('.name').text(`${responseJson.title}`);
     $('.servings').text(`Servings: ${responseJson.servings}`);
     $('.cal').text(`Calories per serving: ${responseJson.nutrition.nutrients[0].amount}`);
     $('.prep').text(`Time: ${responseJson.readyInMinutes} minutes`);
     $('.ingredients-title').text('Ingredients:');
-    checkForPurchased(responseJson.extendedIngredients, userInput);
-    $('.instructions').append(`Cooking Instructions: ${responseJson.instructions}`);
+    $('.instructions').append(`${responseJson.instructions}`);
     $('.results').append(`<img class="remove" src="${responseJson.image}" height="100" width="100">`);
 }
 function emptyResults() {
+
     $('.name').empty();
     $('.servings').empty();
     $('.cal').empty();
@@ -72,60 +73,44 @@ function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
 		event.preventDefault();
 		emptyResults();
-		let ingredients = $('.ingredients').val();
-		getIngredients(ingredients);
+        getIngredients(USERINPUT);
+        USERINPUT = [];
 		$('.ingredients').val("");
 	});
 }
 function getIngredients(input) {
-	let ingredients = input;
-	let arrayInput = ingredients.split(', ');
-	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=true&ingredients=';
+	
+	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=';
 	let newUrl = url;
-	for (let i = 0; i < arrayInput.length; i++) {
-		if (i === arrayInput.length - 1) {
-		newUrl = newUrl + arrayInput[i];
+	for (let i = 0; i < input.length; i++) {
+		if (i === input.length - 1) {
+		newUrl = newUrl + input[i];
 		}
 		else {
-		newUrl = newUrl + arrayInput[i] + '%2C';
+		newUrl = newUrl + input[i] + '%2C';
 		}
     }
-    let userArray = arrayInput;
-    console.log(newUrl);
+    let userArray = input;
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
     .then(responseJson => getRecipeFromIngredientsById(responseJson, userArray))
     .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
 }
 
-function checkForPurchased(ingredient, userInput) {
-    console.log(ingredient);
-    const finalPurchased = [];
-    let newIngredient;
-    for (let i = 0; i < ingredient.length; i++) {
-        let splitName = ingredient[i].name.split(" ");
-        for(let k = 0; k < splitName.length; k++) {
-            for(let j = 0; j < userInput.length; j++) {
-                if (userInput[j] === splitName[k] || userInput[j] + 's' === splitName[k]) {
-                    finalPurchased.push(ingredient[i].originalString);
-                    ingredient.splice(i, 1);
-                }
-            }
-        }
-    }
-    console.log(finalPurchased);
+function checkForPurchased(responseJson) {
+    console.log(responseJson);
+    let unused = responseJson[0].unusedIngredients;
+    let used = responseJson[0].usedIngredients;
+    let missing = responseJson[0].missedIngredients;
     
-    addPurchasedIngredients(finalPurchased);
-    addMissingIngredients(ingredient);
-}
-function addPurchasedIngredients(hasIng) {
-    for (let i = 0; i < hasIng.length; i++) {
-        $('.ingredients').append(`<li class="remove">${hasIng[i]}</li>`);
+    for (let i = 0; i < unused.length; i++) {
+        $('.ingredients').append(`<li class="remove">${unused[i].originalString}</li>`);
     }
-}
-function addMissingIngredients(ingredient) {
-    for (let i = 0; i < ingredient.length; i++) {
-        $('.ingredients').append(`<li class="remove">${ingredient[i].originalString}****</li>`);
+    for (let i=0; i < used.length; i++) {
+        $('.ingredients').append(`<li class="remove">${used[i].originalString}</li>`);
+    }
+    for (let i = 0; i < missing.length; i++) {
+        $('.ingredients').append(`<li class="remove">${missing[i].originalString}****</li>`);
     }
 }
 $(handleAdd);
