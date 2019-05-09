@@ -11,21 +11,18 @@ function handleSearch() {
     $('.find-recipes').click(event => {
         event.preventDefault();
         emptyResults();
-        let protein = $('.protein').val();
-        getRandomRecipe(protein);
+        getRandomRecipe();
         $('.protein').val("");
     });
 }
-function getRandomRecipe(input) {
-    let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=${input}&number=20`;
-        fetch(url, HEAD)
-        .then(response => response.json())
-        .then(responseJson => getRecipeInformationById(responseJson))
-        .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
+function getRandomRecipe() {
+    let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1';
+    fetch(url, HEAD)
+    .then(response => response.json())
+    .then(responseJson => getRandomRecipeInformationById(responseJson))
 }
-function getRecipeInformationById(responseJson) {
-    let rand = generateRandomNumber();
-    let recipeId = responseJson.results[rand].id;
+function getRandomRecipeInformationById(responseJson) {
+    let recipeId = responseJson.recipes[0].id;
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
     .then(response => response.json())
@@ -33,23 +30,21 @@ function getRecipeInformationById(responseJson) {
     .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
 
 }
-function getRecipeFromIngredientsById(responseJson) {
+function getRecipeFromIngredientsById(responseJson, userInput) {
     let recipeId = responseJson[0].id;
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)
     .then(response => response.json())
-    .then(responseJson => displayRecipeInformation(responseJson))
-    .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
+    .then(responseJson => displayRecipeInformation(responseJson, userInput))
+    /*.catch(err => {$('.err').text(`Something is wrong: ${err.message}`)})*/;
 }
-function displayRecipeInformation(responseJson) {
+function displayRecipeInformation(responseJson, userInput) {
     $('.name').text(`${responseJson.title}`);
     $('.servings').text(`Servings: ${responseJson.servings}`);
     $('.cal').text(`Calories per serving: ${responseJson.nutrition.nutrients[0].amount}`);
     $('.prep').text(`Time: ${responseJson.readyInMinutes} minutes`);
     $('.ingredients-title').text('Ingredients:');
-    for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
-        $('.ingredients').append(`<li class="remove">${responseJson.extendedIngredients[i].originalString}</li>`);
-    }
+    checkForPurchased(responseJson.extendedIngredients, userInput);
     $('.instructions').append(`Cooking Instructions: ${responseJson.instructions}`);
     $('.results').append(`<img class="remove" src="${responseJson.image}" height="100" width="100">`);
 }
@@ -85,15 +80,28 @@ function getIngredients(input) {
 		newUrl = newUrl + arrayInput[i] + '%2C';
 		}
     }
+    let userArray = arrayInput;
     console.log(newUrl);
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
-    .then(responseJson => getRecipeFromIngredientsById(responseJson))
-    .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
+    .then(responseJson => getRecipeFromIngredientsById(responseJson, userArray))
+    /*.catch(err => {$('.err').text(`Something went wrong: ${err.message}`)})*/;
 }
 function generateRandomNumber() {
     let rand = Math.floor(Math.random() * 50);
     return rand;
+}
+function checkForPurchased(ingredient, userInput) {
+    for (let i = 0; i < ingredient.length; i++) {
+        for(let k = 0; k < userInput.length; k++) {
+            if (ingredient[i] === userInput[k]) {
+                $('.ingredients').append(`<li class="remove test">${ingredient.extendedIngredients[i].originalString}</li>`)
+            }
+            /*else {
+                $('.ingredients').append(`<li class="remove test">${ingredient.extendedIngredients[i].originalString}***</li>`)
+            }*/
+        }
+    }
 }
 $(handleIngredientSearch);
 $(handleSearch);
