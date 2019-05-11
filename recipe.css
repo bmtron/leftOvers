@@ -19,10 +19,13 @@ body {
 }
 .search {
     display: flex;
-    height: 150px;;
+    height: 100px;;
 }
 .add-section {
-    border: 1px solid black;
     width:50%;
-    height: 150px;
+    display: block;
+    
+}
+.ingsearch, .find-recipes {
+    display: block;
 }

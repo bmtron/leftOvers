@@ -32,8 +32,7 @@ function handleAdd() {
     $('.add').click(event => {
         event.preventDefault();
         let userItem = $('#ingredient-search').val();
-        $('.add-section').append(`<p class="remove js-user-search">${userItem}<button class="remove js-ing">X</button></p>`);
-        $('#ingredient-search').val("");
+       checkForBlankAdd(userItem);
     });
 }
 function removeSearchItem() {
@@ -59,7 +58,7 @@ function getRandomRecipeInformationById(responseJson) {
     fetch(url, HEAD)
     .then(response => response.json())
     .then(responseJson => displayRecipeInformation(responseJson))
-    .catch(err => {$('.err').text(`Something is wrong: ${err.message}`)});
+    .catch(err => {$('.err').text(`Something is wrong: ${err.message}.`)});
 }
 function getIngredients(input) {
 	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=';
@@ -75,7 +74,7 @@ function getIngredients(input) {
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
     .then(responseJson => getRecipeFromIngredientsById(responseJson))
-    .catch(err => {$('.err').text(`Something went wrong: ${err.message}`)});
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
 }
 function getRecipeFromIngredientsById(responseJson) {
     console.log(responseJson);
@@ -109,6 +108,16 @@ function emptyResults() {
 function addIngredients(responseJson) {
     for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
         $('.ingredients').append(`<li class="remove">${responseJson.extendedIngredients[i].originalString}</li>`);
+    }
+}
+function checkForBlankAdd(input) {
+    if (input === '') {
+        
+        alert('You must choose an ingredient before adding it to your list.');
+    }
+    else {
+        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing">X</button></p>`);
+        $('#ingredient-search').val("");
     }
 }
 function handleAll() {
