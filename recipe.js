@@ -44,6 +44,7 @@ function removeSearchItem() {
 }
 function splitSearch(input) {
     let test = input.split('X');
+    test.pop();
     return test;
 }
 function getRandomRecipe() {
