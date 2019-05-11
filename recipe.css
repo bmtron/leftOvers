@@ -39,6 +39,7 @@ body {
     }
     .ingr-search-field {
         text-align: center;
+        border: none;
     }
     #ingredient-search {
         margin-right: auto;
@@ -49,7 +50,7 @@ body {
         margin-left: auto;
     }
     .add-section {
-        border: 1px solid black;
+        
         height: auto;
         overflow: auto;
         margin-right: auto;
@@ -81,6 +82,7 @@ body {
         color: black;
         font-weight: 300;
         font-family: Arial, Helvetica, sans-serif;
+        margin-left: 3px;
     }
     .js-ing:hover {
         cursor: pointer;
