@@ -22,7 +22,6 @@ function handleIngredientSearch() {
         let test = $('.js-user-search').text();
         USERINPUT = splitSearch(test);
         emptyResults();
-        console.log(USERINPUT);
         getIngredients(USERINPUT);
         USERINPUT = [];
 		$('.ingredients').val("");
@@ -42,9 +41,9 @@ function removeSearchItem() {
     });
 }
 function splitSearch(input) {
-    let test = input.split('X');
-    test.pop();
-    return test;
+    let ingredientArray = input.split('X');
+    ingredientArray.pop();
+    return ingredientArray;
 }
 function getRandomRecipe() {
     let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1';
@@ -112,11 +111,10 @@ function addIngredients(responseJson) {
 }
 function checkForBlankAdd(input) {
     if (input === '') {
-        
         alert('You must choose an ingredient before adding it to your list.');
     }
     else {
-        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing">X</button></p>`);
+        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing"></button></p>`);
         $('#ingredient-search').val("");
     }
 }
