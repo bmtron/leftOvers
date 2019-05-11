@@ -20,6 +20,7 @@ function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
         event.preventDefault();
         let test = $('.js-user-search').text();
+        console.log(test);
         USERINPUT = splitSearch(test);
         console.log(USERINPUT);
         emptyResults();
@@ -42,7 +43,7 @@ function removeSearchItem() {
     });
 }
 function splitSearch(input) {
-    let ingredientArray = input.split('X');
+    let ingredientArray = input.split(' ');
     ingredientArray.pop();
     return ingredientArray;
 }
@@ -115,7 +116,7 @@ function checkForBlankAdd(input) {
         alert('You must choose an ingredient before adding it to your list.');
     }
     else {
-        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing"></button></p>`);
+        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing"> </button></p>`);
         $('#ingredient-search').val("");
     }
 }
@@ -132,7 +133,7 @@ function handleSpaces() {
     })
 }
 function handleAll() {
-    //$(handleSpaces);
+    $(handleSpaces);
     $(removeSearchItem);
     $(handleAdd);
     $(handleIngredientSearch);
