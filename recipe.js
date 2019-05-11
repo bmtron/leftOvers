@@ -18,8 +18,11 @@ function handleSearch() {
 }
 function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
-		event.preventDefault();
+        event.preventDefault();
+        let test = $('.js-user-search').text();
+        USERINPUT = splitSearch(test);
         emptyResults();
+        console.log(USERINPUT);
         getIngredients(USERINPUT);
         USERINPUT = [];
 		$('.ingredients').val("");
@@ -29,11 +32,20 @@ function handleAdd() {
     $('.add').click(event => {
         event.preventDefault();
         let userItem = $('#ingredient-search').val();
-        USERINPUT.push(userItem);
-        ingredientCheck.push(userItem);
         $('.add-section').append(`<p class="remove js-user-search">${userItem}<button class="remove js-ing">X</button></p>`);
         $('#ingredient-search').val("");
     });
+}
+function removeSearchItem() {
+    $('.add-section').on('click', '.js-ing', event => {
+        event.preventDefault();
+        event.target.closest('p').remove();
+    });
+}
+function splitSearch(input) {
+    let test = input.split('X');
+    test.pop();
+    return test;
 }
 function getRandomRecipe() {
     let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1';
@@ -100,6 +112,7 @@ function addIngredients(responseJson) {
     }
 }
 function handleAll() {
+    $(removeSearchItem);
     $(handleAdd);
     $(handleIngredientSearch);
     $(handleSearch);

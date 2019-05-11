@@ -1,9 +1,28 @@
 * {
     box-sizing: border-box;
 }
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
 
 .ingr-search-field {
     display: flex;
     flex-direction: column;
+}
+.ingr-search{
     width: 50%;
+}
+.search {
+    display: flex;
+    height: 150px;;
+}
+.add-section {
+    border: 1px solid black;
+    width:50%;
+    height: 150px;
 }
