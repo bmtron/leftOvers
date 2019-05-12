@@ -36,7 +36,7 @@ header {
     margin-top: 0;
     margin-bottom: 5px;
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
     
     h1 {
         margin-top: 0;
@@ -174,5 +174,8 @@ header {
         border: 1px solid #F1F4DF;
         border-radius: 5px;
         height: 25px;
+    }
+    .bigO {
+        font-size: 135%;
     }
 }
