@@ -78,7 +78,6 @@ function getIngredients(input) {
     .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
 }
 function getRecipeFromIngredientsById(responseJson) {
-    console.log(responseJson);
     let recipeId = responseJson[0].id;
     let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information?includeNutrition=true`;
     fetch(url, HEAD)

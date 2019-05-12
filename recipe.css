@@ -1,16 +1,22 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    
 }
 html {
     height: 100%;
+}
+main {
+    font-family: 'Heebo', sans-serif;
 }
 body {
     margin: 0;
     height: 100%;
     width: 100%;
 }
-
+header {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 110%;
+}
 .ingr-search-field {
     display: flex;
     flex-direction: column;
@@ -30,27 +36,58 @@ body {
     margin-top: 0;
     margin-bottom: 5px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
+    
     h1 {
         margin-top: 0;
+        z-index: 2;
     }
+    body {
+        background-color: #D3D93B;
+    }
+    header {
+        position: relative;
+    }
+   .background-img {
+    background: url("https://t3.ftcdn.net/jpg/02/14/59/76/240_F_214597619_GgPZ3cQAasuYwMTeEqopTKfjMo2cOF8U.jpg") no-repeat;
+    background-size: cover;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    min-height: 160px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+   }
+   .header-content {
+       align-self: center;
+       background-color: rgb(0, 0, 0, .2);
+       color: white;
+   }
     .search {
         display: block;
+        z-index: 2;
     }
     .ingr-search-field {
         text-align: center;
         border: none;
+        z-index: 2;
     }
     #ingredient-search {
         margin-right: auto;
         margin-left: auto;
+        z-index: 2;
     }
     .add {
+        margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
+        z-index: 2;
     }
     .add-section {
-        
+        z-index: 2;
         height: auto;
         overflow: auto;
         margin-right: auto;
@@ -61,13 +98,16 @@ body {
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+        z-index: 2;
     }
     .ingsearch-container, .find-recipes-container{
         text-align: center;
+        z-index: 2;
     }
     .js-user-search {
         margin-top: 5px;
         margin-bottom: 5px;
+        z-index: 2;
     }
     .js-ing {
         background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/White_X_in_red_background.svg/1024px-White_X_in_red_background.svg.png");
@@ -83,11 +123,20 @@ body {
         font-weight: 300;
         font-family: Arial, Helvetica, sans-serif;
         margin-left: 3px;
+        z-index: 2;
     }
     .js-ing:hover {
         cursor: pointer;
         height: 10px;
         width: 10px;
-        
+        z-index: 2;
+    }
+    .add, .ingsearch, .find-recipes {
+        padding: 5px;
+        border: none;
+        background-color: #78A633;
+        height: 25px;
+        color: white;
+        border-radius: 3px;
     }
 }

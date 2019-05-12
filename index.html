@@ -2,43 +2,48 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" width="device-width, initial-scale=1">
+        <meta name="viewport" width="device-width,initial-scale=1">
         <meta name="description" content="A random recipe generator">
         <title>Random Recipe Generator</title>
         <link href="recipe.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Heebo" rel="stylesheet">
     </head>
     <body>
         <header>
-            <h1>LftOvrs</h1>
-            <h2>An intuitive app to search for tasty new meals using ingredients already in your fridge!</h2>
-            <p>Just add the ingredients you'd like to use to the Ingredients tab, then search for a recipe!</p>
+            <section class="background-img"></section>
+            <section class='header-content'>
+                <h1>LftOvrs</h1>
+                <h2>An intuitive app to search for tasty new meals using ingredients already in your fridge!</h2>
+                <p class="headerp">Just add the ingredients you'd like to use to the Ingredients tab, then search for a recipe!</p>
+            </section>
         </header>
-        <section class="search">
-            <form class="ingr-search">
-                <fieldset class="ingr-search-field">
-                    <label name="ingredient-search">Add your ingredients</label>
-                    <input name="ingredients" id="ingredient-search" class="ingredients" type="text">
-                    <button class="add" type="submit">Add</button>
-                </fieldset>
-            </form>
-        </section>
-        <section class="add-section">
-            <p class="add-ingredient">Ingredients:</p>
-        </section>
-
-        <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
-        <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
-        <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
-        <section class="results">
-            <p class="name"></p>
-            <p class="servings"></p>
-            <p class="cal"></p>
-            <p class="prep"></p>
-            <p class="ingredients-title"></p>
-            <ul class="ingredients"></ul>
-            <p class="instructions"></p>
-            <p class="err"></p>
-        </section>
+        <main>
+            <section class="search">
+                <form class="ingr-search">
+                    <fieldset class="ingr-search-field">
+                        <label name="ingredient-search">Add your ingredients</label>
+                        <input name="ingredients" id="ingredient-search" class="ingredients" type="text">
+                        <button class="add" type="submit">Add</button>
+                    </fieldset>
+                </form>
+            </section>
+            <section class="add-section">
+                <p class="add-ingredient">Ingredients:</p>
+            </section>
+            <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
+            <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
+            <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
+            <section class="results">
+                <p class="name"></p>
+                <p class="servings"></p>
+                <p class="cal"></p>
+                <p class="prep"></p>
+                <p class="ingredients-title"></p>
+                <ul class="ingredients"></ul>
+                <p class="instructions"></p>
+                <p class="err"></p>
+            </section>
+        </main>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="recipe.js"></script>
     </body>
