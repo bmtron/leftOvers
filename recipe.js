@@ -13,6 +13,7 @@ function handleSearch() {
         event.preventDefault();
         emptyResults();
         getRandomRecipe();
+        $('.results').show();
         $('.protein').val("");
     });
 }
@@ -25,6 +26,7 @@ function handleIngredientSearch() {
         console.log(USERINPUT);
         emptyResults();
         getIngredients(USERINPUT);
+        $('.results').show();
         USERINPUT = [];
 		$('.ingredients').val("");
 	});
@@ -43,7 +45,7 @@ function removeSearchItem() {
     });
 }
 function splitSearch(input) {
-    let ingredientArray = input.split(' ');
+    let ingredientArray = input.split('X');
     ingredientArray.pop();
     return ingredientArray;
 }
@@ -115,7 +117,7 @@ function checkForBlankAdd(input) {
         alert('You must choose an ingredient before adding it to your list.');
     }
     else {
-        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing"> </button></p>`);
+        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing">X</button></p>`);
         $('#ingredient-search').val("");
     }
 }
