@@ -25,10 +25,15 @@ function handleIngredientSearch() {
         USERINPUT = splitSearch(test);
         console.log(USERINPUT);
         emptyResults();
+        if (USERINPUT === undefined || USERINPUT.length == 0) {
+            $('.name').text('Error: You must add ingredients before you search for a recipe.');
+        }
+        else {
         getIngredients(USERINPUT);
         $('.results').show();
         USERINPUT = [];
-		$('.ingredients').val("");
+        $('.ingredients').val("");
+        }
 	});
 }
 function handleAdd() {
@@ -47,6 +52,7 @@ function removeSearchItem() {
 function splitSearch(input) {
     let ingredientArray = input.split('X');
     ingredientArray.pop();
+   
     return ingredientArray;
 }
 function getRandomRecipe() {
@@ -77,7 +83,7 @@ function getIngredients(input) {
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
     .then(responseJson => getRecipeFromIngredientsById(responseJson))
-    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. No recipes matched the ingredients you searched for.`)});
 }
 function getRecipeFromIngredientsById(responseJson) {
     let recipeId = responseJson[0].id;
