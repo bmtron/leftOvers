@@ -21,14 +21,7 @@ function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
         event.preventDefault();
         let test = $('.js-user-search').text();
-        console.log(test);
-        USERINPUT = splitSearch(test);
-        console.log(USERINPUT);
-        emptyResults();
-        getIngredients(USERINPUT);
-        $('.results').show();
-        USERINPUT = [];
-		$('.ingredients').val("");
+       checkUserInputForNothing(test);
 	});
 }
 function handleAdd() {
@@ -121,20 +114,19 @@ function checkForBlankAdd(input) {
         $('#ingredient-search').val("");
     }
 }
-function handleSpaces() {
-    $('#ingredient-search').on({
-        keydown: function(event) {
-            if (event.which === 32) {
-                alert('Enter only one ingredient at a time.');
-            }
-        },
-        change: function() {
-            this.value = this.value.replace(/\s/g, "");
-        }
-    })
+function checkUserInputForNothing(input) {
+    USERINPUT = splitSearch(input);
+    if (USERINPUT === undefined || USERINPUT.length == 0) {
+        $('.name').text('Error: You must add ingredients before you search for a recipe.');
+    }
+    else {
+    getIngredients(USERINPUT);
+    $('.results').show();
+    USERINPUT = [];
+    $('.ingredients').val("");
+    }
 }
 function handleAll() {
-    $(handleSpaces);
     $(removeSearchItem);
     $(handleAdd);
     $(handleIngredientSearch);
