@@ -21,19 +21,9 @@ function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
         event.preventDefault();
         let test = $('.js-user-search').text();
-        console.log(test);
         USERINPUT = splitSearch(test);
-        console.log(USERINPUT);
         emptyResults();
-        if (USERINPUT === undefined || USERINPUT.length == 0) {
-            $('.name').text('Error: You must add ingredients before you search for a recipe.');
-        }
-        else {
-        getIngredients(USERINPUT);
-        $('.results').show();
-        USERINPUT = [];
-        $('.ingredients').val("");
-        }
+        checkUserInputForNothing();
 	});
 }
 function handleAdd() {
@@ -52,7 +42,6 @@ function removeSearchItem() {
 function splitSearch(input) {
     let ingredientArray = input.split('X');
     ingredientArray.pop();
-   
     return ingredientArray;
 }
 function getRandomRecipe() {
@@ -127,7 +116,17 @@ function checkForBlankAdd(input) {
         $('#ingredient-search').val("");
     }
 }
-
+function checkUserInputForNothing() {
+    if (USERINPUT === undefined || USERINPUT.length == 0) {
+        $('.name').text('Error: You must add ingredients before you search for a recipe.');
+    }
+    else {
+    getIngredients(USERINPUT);
+    $('.results').show();
+    USERINPUT = [];
+    $('.ingredients').val("");
+    }
+}
 function handleAll() {
     $(removeSearchItem);
     $(handleAdd);
