@@ -127,20 +127,8 @@ function checkForBlankAdd(input) {
         $('#ingredient-search').val("");
     }
 }
-function handleSpaces() {
-    $('#ingredient-search').on({
-        keydown: function(event) {
-            if (event.which === 32) {
-                alert('Enter only one ingredient at a time.');
-            }
-        },
-        change: function() {
-            this.value = this.value.replace(/\s/g, "");
-        }
-    })
-}
+
 function handleAll() {
-    $(handleSpaces);
     $(removeSearchItem);
     $(handleAdd);
     $(handleIngredientSearch);
