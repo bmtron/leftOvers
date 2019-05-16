@@ -35,9 +35,6 @@ header {
     margin-top: 0;
     margin-bottom: 5px;
 }
-<<<<<<< HEAD
-
-=======
 @media screen and (min-width: 951px){
     h1 {
         margin-left: 25px;
@@ -372,5 +369,4 @@ header {
     .bigO {
         font-size: 135%;
     }
->>>>>>> stylingTest
 }
