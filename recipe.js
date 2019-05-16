@@ -30,10 +30,19 @@ function handleAdd() {
        checkForBlankAdd(userItem);
     });
 }
+function handleBackToTop() {
+    $('.to-top').click(event => {
+        event.preventDefault();
+        console.log('click');
+        var main = document.getElementById("main");
+        main.scrollIntoView({behavior: "smooth", block: "start"});
+    });
+}
 function removeSearchItem() {
     $('.add-section').on('click', '.js-ing', event => {
         event.preventDefault();
         event.target.closest('p').remove();
+        removeIngredientLabel();
     });
 }
 function splitSearch(input) {
@@ -91,7 +100,7 @@ function displayRecipeInformation(responseJson) {
     $('.ingredients-title').text(`Ingredients:`);
     addIngredients(responseJson);
     $('.instructions').append(`${responseJson.instructions}`);
-    $('.results').append(`<img class="remove" src="${responseJson.image}" height="100" width="100">`);
+    $('.js-results').append(`<img class="remove recipe-image" src="${responseJson.image}" height="100" width="100">`);
 }
 function emptyResults() {
     $('.name').empty();
@@ -102,6 +111,11 @@ function emptyResults() {
     $('.err').empty();
     $('.instructions').empty();
     $('.remove').remove();
+}
+function removeIngredientLabel() {
+    if ($('.js-user-search').text() === undefined || $('.js-user-search').text() === '') {
+        $('.add-ingredient').empty();
+    }
 }
 function addIngredients(responseJson) {
     for (let i = 0; i < responseJson.extendedIngredients.length; i++) {
@@ -114,6 +128,7 @@ function checkForBlankAdd(input) {
     }
     else {
         $('.add-section').append(`<p class="js-user-search">${input}<button class="js-ing">X</button></p>`);
+        $('.add-ingredient').text('Ingredients:');
         $('#ingredient-search').val("");
     }
 }
@@ -140,5 +155,6 @@ function handleAll() {
     $(handleAdd);
     $(handleIngredientSearch);
     $(handleRandomSearch);
+    $(handleBackToTop);
 }
 $(handleAll);
