@@ -265,18 +265,16 @@ header {
    }
     .search {
         display: block;
-        z-index: 2;
     }
     .ingr-search-field {
         text-align: center;
         border: none;
-        z-index: 2;
     }
     #ingredient-search {
         margin-right: auto;
         margin-left: auto;
-        width: 350px;
-        background-color: #F1F4DF;
+        width: 320px;
+        background-color: rgb(241, 244, 223);
         border: 1px solid #F1F4DF;
         border-radius: 5px;
         height: 35px;
@@ -284,17 +282,16 @@ header {
         font-size: 1.1em;
     }
     .add {
-        width: 100px;
+        
         margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
-        z-index: 2;
+    
     }
     .to-top {
         display: none;
     }
     .add-section {
-        z-index: 2;
         height: auto;
         overflow: auto;
         margin-right: auto;
@@ -346,11 +343,13 @@ header {
     .add, .ingsearch, .find-recipes {
         padding: 5px;
         border: none;
+        width: 320px;
         background-color: #78A633;
         height: 40px;
         color: white;
         border-radius: 3px;
-        font-size: 1.2em;
+        font-size: 120%;
+        border: 2px solid rgb(71, 99, 30);
     }
     .results {
         margin-top: 10px;

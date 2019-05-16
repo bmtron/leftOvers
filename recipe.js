@@ -19,8 +19,8 @@ function handleRandomSearch() {
 function handleIngredientSearch() {
 	$('.ingsearch').click(event => {
         event.preventDefault();
-        let test = $('.js-user-search').text();
-       checkUserInputForNothing(test);
+        let ingredient = $('.js-user-search').text();
+       checkUserInputForNothing(ingredient);
 	});
 }
 function handleAdd() {
