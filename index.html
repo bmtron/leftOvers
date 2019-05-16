@@ -18,31 +18,31 @@
             </section>
         </header>
         <main>
-            <section class="search">
-                <form class="ingr-search">
-                    <fieldset class="ingr-search-field">
-                        <label name="ingredient-search">Add your leftovers!</label>
-                        <input name="ingredients" id="ingredient-search" class="ingredients" type="text" placeholder="Chicken, rice, lemon, cream">
-                        <button class="add" type="submit">Add</button>
-                    </fieldset>
-                </form>
+            <section class="search-container">
+                <section class="search">
+                    <form class="ingr-search">
+                        <fieldset class="ingr-search-field">
+                            <label name="ingredient-search">Add your leftovers!</label>
+                            <input name="ingredients" id="ingredient-search" class="ingredients" type="text" placeholder="Chicken, rice, lemon, cream">
+                            <button class="add" type="submit">Add</button>
+                        </fieldset>
+                    </form>
+                </section>
+                <p class="add-ingredient">Ingredients:</p>
+                <section class="add-section"></section>
+                <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
+                <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
+                <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
             </section>
-            <p class="add-ingredient">Ingredients:</p>
-            <section class="add-section">
-                
-            </section>
-            <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
-            <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
-            <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
-            <section class="results">
-                <p class="name"></p>
-                <p class="servings"></p>
-                <p class="cal"></p>
-                <p class="prep"></p>
-                <p class="ingredients-title"></p>
-                <ul class="ingredients"></ul>
-                <p class="instructions"></p>
-                <p class="err"></p>
+            <section class="results" id="results">
+                <p class="name"> </p>
+                <p class="servings"> </p>
+                <p class="cal"> </p>
+                <p class="prep"> </p>
+                <p class="ingredients-title"> </p>
+                <ul class="ingredients"> </ul>
+                <p class="instructions"> </p>
+                <p class="err"> </p>
             </section>
         </main>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

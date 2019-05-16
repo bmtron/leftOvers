@@ -6,14 +6,13 @@ const HEAD = {
     'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
     }
 }
-let USERINPUT = [];
-let ingredientCheck = [];
-function handleSearch() {
+function handleRandomSearch() {
     $('.find-recipes').click(event => {
         event.preventDefault();
         emptyResults();
         getRandomRecipe();
         $('.results').show();
+        scrollToResults();
         $('.protein').val("");
     });
 }
@@ -57,7 +56,14 @@ function getRandomRecipeInformationById(responseJson) {
     .catch(err => {$('.err').text(`Something is wrong: ${err.message}.`)});
 }
 function getIngredients(input) {
-	let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=';
+	let newUrl = getUrlFromIngredients(input);
+	fetch(newUrl, HEAD)
+	.then(response => response.json())
+    .then(responseJson => getRecipeFromIngredientsById(responseJson))
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
+}
+function getUrlFromIngredients(input) {
+    let url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=1&ranking=1&ignorePantry=false&ingredients=';
 	let newUrl = url;
 	for (let i = 0; i < input.length; i++) {
 		if (i === input.length - 1) {
@@ -67,10 +73,7 @@ function getIngredients(input) {
 		newUrl = newUrl + input[i] + '%2C';
 		}
     }
-	fetch(newUrl, HEAD)
-	.then(response => response.json())
-    .then(responseJson => getRecipeFromIngredientsById(responseJson))
-    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
+    return newUrl;
 }
 function getRecipeFromIngredientsById(responseJson) {
     let recipeId = responseJson[0].id;
@@ -110,26 +113,32 @@ function checkForBlankAdd(input) {
         alert('You must choose an ingredient before adding it to your list.');
     }
     else {
-        $('.add-section').append(`<p class="remove js-user-search">${input}<button class="remove js-ing">X</button></p>`);
+        $('.add-section').append(`<p class="js-user-search">${input}<button class="js-ing">X</button></p>`);
         $('#ingredient-search').val("");
     }
 }
 function checkUserInputForNothing(input) {
-    USERINPUT = splitSearch(input);
-    if (USERINPUT === undefined || USERINPUT.length == 0) {
-        $('.name').text('Error: You must add ingredients before you search for a recipe.');
+    let USERINPUT = splitSearch(input);
+    if (USERINPUT === undefined || USERINPUT.length === 0) {
+       alert('Error: You must add ingredients before you search for a recipe.');
     }
     else {
-    getIngredients(USERINPUT);
-    $('.results').show();
-    USERINPUT = [];
-    $('.ingredients').val("");
+        emptyResults();
+        getIngredients(USERINPUT);
+        $('.results').show();
+        scrollToResults();
+        USERINPUT = [];
+        $('.ingredients').val("");
     }
+}
+function scrollToResults() {
+    var result = document.getElementById("results");
+    result.scrollIntoView({behavior: "smooth", block: "end"});
 }
 function handleAll() {
     $(removeSearchItem);
     $(handleAdd);
     $(handleIngredientSearch);
-    $(handleSearch);
+    $(handleRandomSearch);
 }
 $(handleAll);
