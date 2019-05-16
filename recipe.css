@@ -29,12 +29,348 @@ header {
 .add-section {
     width:50%;
     display: block;
-    
 }
 
 .add-ingredient {
     margin-top: 0;
     margin-bottom: 5px;
 }
+<<<<<<< HEAD
 
+=======
+@media screen and (min-width: 951px){
+    h1 {
+        margin-left: 25px;
+        padding-top: 15px;
+        margin-top: 0;
+        font-size: 170%;
+        z-index: 2;
+    }
+    body {
+        background-color: #D3D93B;
+    }
+    main {
+        height: 100vh;
+    }
+    header {
+        position: relative;
+        width: 100%;
+    }
+    header h2 {
+        margin-bottom: 15px;
+        font-size: 1.75em;
+    }
+    .headerp {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        font-size: 1.2em;
+    }
+    header h2, .headerp {
+        text-align: center;
+    }
+   .background-img {
+        background: url("https://t3.ftcdn.net/jpg/02/14/59/76/240_F_214597619_GgPZ3cQAasuYwMTeEqopTKfjMo2cOF8U.jpg") no-repeat;
+        background-size: cover;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+        min-height: 160px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+   }
+   .header-content {
+       align-self: center;
+       background-color: rgb(0, 0, 0, .4);
+       color: white;
+       min-height: 160px;
+       top: 0;
+   }
+
+    .search {
+        display: block;
+        z-index: 2;
+    }
+    .ingr-search-field {
+        text-align: center;
+        border: none;
+        z-index: 2;
+        font-size: 120%;
+        margin-top: 5%;
+    }
+    .search-container {
+        height: 70vh;
+        width: 100%;
+    }
+    #ingredient-search {
+        margin-right: auto;
+        margin-left: auto;
+        background-color: rgb(236, 243, 196);
+        border: 2px solid #78A633;
+        border-radius: 5px;
+        height: 40px;
+        width: 350px;
+        font-size: 105%;
+        padding: 5px;
+    }
+    .add {
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .to-top {
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .add-section {
+        z-index: 2;
+        height: auto;
+        overflow: auto;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+        background-color: #F1F4DF;
+        border-radius: 10px;
+    }
+    .randp {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        z-index: 2;
+    }
+    .ingsearch-container, .find-recipes-container, .to-top-container{
+        text-align: center;
+        z-index: 2;
+    }
+    .js-user-search {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        z-index: 2;
+        font-size: 20px;
+        background-color:  #F1F4DF;
+    }
+    .js-ing {
+        background-size: cover;
+        height: 14px;
+        width: 14px;
+        border: none;
+        padding: 0;
+        position: relative;
+        bottom: 6px;
+        background-color: rgb(224, 228, 203);
+        color: black;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 3px;
+        z-index: 2;
+        border-radius: 3px;
+    }
+    .js-ing:hover {
+        cursor: pointer;
+        background-color: rgb(207, 212, 179);
+        z-index: 2;
+        height: 16px;
+        width: 16px;
+    }
+    .add:hover, .ingsearch:hover, .find-recipes:hover, .to-top:hover {
+        cursor: pointer;
+    }
+    .add, .ingsearch, .find-recipes, .to-top {
+        padding: 5px;
+        border: 2px solid rgb(71, 99, 30);
+        background-color: #78A633;
+        color: white;
+        border-radius: 3px;
+        width: 200px;
+        height: 40px;
+        font-size: 120%
+    }
+    .js-results {
+        background-color: #F1F4DF;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .recipe-image {
+        position: relative;
+    }
+    .results {
+        display: none;
+        margin-top: 10px;
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15px;
+        padding: 5px;
+        height: 100vh;
+    }
+    .add-ingredient {
+        width: 40%;
+        text-align: center;
+        font-size: 120%;
+        margin-top: 40px;  
+    }
+    .bigO {
+        font-size: 135%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    
+    h1 {
+        margin-top: 0;
+        font-size: 170%;
+        z-index: 2;
+    }
+    body {
+        background-color: #D3D93B;
+    }
+    header {
+        position: relative;
+    }
+    header h2 {
+        margin-bottom: 5px;
+    }
+    .headerp {
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+    header h2, .headerp {
+        text-align: center;
+    }
+    label {
+        margin-bottom: 10px;
+    }
+   .background-img {
+        background: url("https://t3.ftcdn.net/jpg/02/14/59/76/240_F_214597619_GgPZ3cQAasuYwMTeEqopTKfjMo2cOF8U.jpg") no-repeat;
+        background-size: cover;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+        min-height: 160px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+   }
+   .header-content {
+       align-self: center;
+       background-color: rgb(0, 0, 0, .3);
+       color: white;
+       min-height: 160px;
+   }
+    .search {
+        display: block;
+    }
+    .ingr-search-field {
+        text-align: center;
+        border: none;
+    }
+    #ingredient-search {
+        margin-right: auto;
+        margin-left: auto;
+        width: 320px;
+        background-color: rgb(241, 244, 223);
+        border: 1px solid #F1F4DF;
+        border-radius: 5px;
+        height: 35px;
+        padding: 5px;
+        font-size: 1.1em;
+    }
+    .add {
+        
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    
+    }
+    .to-top {
+        display: none;
+    }
+    .add-section {
+        height: auto;
+        overflow: auto;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+        background-color: #F1F4DF;
+        border-radius: 10px;
+    }
+    .randp {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    
+    }
+    .ingsearch-container, .find-recipes-container{
+        text-align: center;
+        
+    }
+    .js-user-search {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+        font-size: 1.15em;
+    }
+    label, .add-ingredient, .randp {
+        font-size: 1.4em;
+    }
+    .js-ing {
+        background-size: cover;
+        height: 14px;
+        width: 14px;
+        border: none;
+        padding: 0;
+        position: relative;
+        bottom: 6px;
+        background-color: rgb(224, 228, 203);
+        color: black;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 3px;
+        
+        border-radius: 3px;
+    }
+    .js-ing:hover {
+        cursor: pointer;
+        background-color: rgb(207, 212, 179);
+        
+    }
+    .add, .ingsearch, .find-recipes {
+        padding: 5px;
+        border: none;
+        width: 320px;
+        background-color: #78A633;
+        height: 40px;
+        color: white;
+        border-radius: 3px;
+        font-size: 120%;
+        border: 2px solid rgb(71, 99, 30);
+    }
+    .results {
+        margin-top: 10px;
+        background-color: #F1F4DF;
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        display: none;
+        border-radius: 10px;
+    }
+    .add-ingredient {
+        width: 40%;
+        text-align: center;
+        margin-top: 40px;
+    }
+    .bigO {
+        font-size: 135%;
+    }
+>>>>>>> stylingTest
 }

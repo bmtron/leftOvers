@@ -9,42 +9,46 @@
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Heebo" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <section class="background-img"></section>
-            <section class='header-content'>
-                <h1>leftOvers</h1>
-                <h2>An intuitive app to search for tasty new meals using ingredients already in your fridge!</h2>
-                <p class="headerp">Just add the ingredients you'd like to use to the Ingredients tab, then search for a recipe!</p>
-            </section>
-        </header>
-        <main>
-            <section class="search">
-                <form class="ingr-search">
-                    <fieldset class="ingr-search-field">
-                        <label name="ingredient-search">Add your ingredients</label>
-                        <input name="ingredients" id="ingredient-search" class="ingredients" type="text" placeholder="Chicken, rice, lemon, cream">
-                        <button class="add" type="submit">Add</button>
-                    </fieldset>
-                </form>
-            </section>
-            <p class="add-ingredient">Ingredients:</p>
-            <section class="add-section">
-                
-            </section>
-            <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
-            <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
-            <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
-            <section class="results">
-                <p class="name"></p>
-                <p class="servings"></p>
-                <p class="cal"></p>
-                <p class="prep"></p>
-                <p class="ingredients-title"></p>
-                <ul class="ingredients"></ul>
-                <p class="instructions"></p>
-                <p class="err"></p>
+        <main id="main">
+            <header>
+                <section class="background-img"></section>
+                <section class='header-content'>
+                    <h1>left<span class="bigO">O</span>vers</h1>
+                    <h2>An intuitive app to search for tasty new meals using ingredients already in your fridge!</h2>
+                    <p class="headerp">Just add the ingredients you'd like to use to the Ingredients tab, then search for a recipe!</p>
+                </section>
+            </header>
+            <section class="search-container">
+                <section class="search">
+                    <form class="ingr-search">
+                        <fieldset class="ingr-search-field">
+                            <label name="ingredient-search">Add your leftovers!</label>
+                            <input name="ingredients" id="ingredient-search" class="ingredients" type="text" placeholder="Chicken, rice, lemon, cream">
+                            <button class="add" type="submit">Add</button>
+                        </fieldset>
+                    </form>
+                </section>
+                <p class="add-ingredient"></p>
+                <section class="add-section"></section>
+                <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
+                <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
+                <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
             </section>
         </main>
+            <section class="results" id="results">
+                <section class="js-results">
+                    <p class="name"></p>
+                    <p class="servings"></p>
+                    <p class="cal"></p>
+                    <p class="prep"></p>
+                    <p class="ingredients-title"></p>
+                    <ul class="ingredients"></ul>
+                    <p class="instructions"></p>
+                    <p class="err"></p>
+                </section>
+                <div class="to-top-container"><button class="to-top">Back to Top</button></div>
+            </section>
+        
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="recipe.js"></script>
     </body>
