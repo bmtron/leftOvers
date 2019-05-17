@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    
 }
 html {
     height: 100%;
@@ -21,7 +20,6 @@ header {
     display: flex;
     flex-direction: column;
 }
-
 .search {
     display: flex;
     height: 100px;;
@@ -30,17 +28,17 @@ header {
     width:50%;
     display: block;
 }
-
 .add-ingredient {
     margin-top: 0;
     margin-bottom: 5px;
 }
 @media screen and (min-width: 951px){
     h1 {
-        margin-left: 25px;
+        margin-left: 65px;
         padding-top: 15px;
         margin-top: 0;
-        font-size: 170%;
+        margin-bottom: 10px;
+        font-size: 250%;
         z-index: 2;
     }
     body {
@@ -54,6 +52,7 @@ header {
         width: 100%;
     }
     header h2 {
+        margin-top: 15px;
         margin-bottom: 15px;
         font-size: 1.75em;
     }
@@ -85,15 +84,18 @@ header {
        min-height: 160px;
        top: 0;
    }
-
+   label {
+       margin-bottom: 10px;
+   }
+    label, .randp {
+        font-size: 120%;
+    }
     .search {
         display: block;
-        z-index: 2;
     }
     .ingr-search-field {
         text-align: center;
         border: none;
-        z-index: 2;
         font-size: 120%;
         margin-top: 5%;
     }
@@ -123,7 +125,6 @@ header {
         margin-left: auto;
     }
     .add-section {
-        z-index: 2;
         height: auto;
         overflow: auto;
         margin-right: auto;
@@ -136,20 +137,17 @@ header {
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        z-index: 2;
     }
     .ingsearch-container, .find-recipes-container, .to-top-container{
         text-align: center;
-        z-index: 2;
     }
     .js-user-search {
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px; 
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-right: 10px;
-        z-index: 2;
         font-size: 20px;
         background-color:  #F1F4DF;
     }
@@ -166,13 +164,11 @@ header {
         font-weight: 300;
         font-family: Arial, Helvetica, sans-serif;
         margin-left: 3px;
-        z-index: 2;
         border-radius: 3px;
     }
     .js-ing:hover {
         cursor: pointer;
         background-color: rgb(207, 212, 179);
-        z-index: 2;
         height: 16px;
         width: 16px;
     }
@@ -190,15 +186,35 @@ header {
         font-size: 120%
     }
     .js-results {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
         background-color: #F1F4DF;
         border-radius: 10px;
         padding: 10px;
+        width: 50%;
+        min-height: 50%;
+        border-radius: 15px 30px 30px 15px;
+        justify-content: center;
+    }
+    .image {
+        flex: 1 0 auto;
+        width: 50%;
+        background-color: #F1F4DF;
+        border-radius: 30px 15px 15px 30px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
     }
     .recipe-image {
-        position: relative;
+        border-radius: 8px;
+    }
+    .recipe-pic {
+        text-align: center;
     }
     .results {
-        display: none;
         margin-top: 10px;
         width: 92%;
         margin-left: auto;
@@ -206,6 +222,17 @@ header {
         margin-bottom: 15px;
         padding: 5px;
         height: 100vh;
+        align-items: center;
+    }
+    .results-container {
+        display: flex;
+        margin-top: 15%;
+    }
+    .hide {
+        display: none;
+    }
+    .show {
+        display: flex;
     }
     .add-ingredient {
         width: 40%;
@@ -219,7 +246,6 @@ header {
 }
 
 @media screen and (max-width: 950px) {
-    
     h1 {
         margin-top: 0;
         font-size: 170%;
@@ -243,6 +269,9 @@ header {
     }
     label {
         margin-bottom: 10px;
+    }
+    .recipe-pic {
+        text-align: center;
     }
    .background-img {
         background: url("https://t3.ftcdn.net/jpg/02/14/59/76/240_F_214597619_GgPZ3cQAasuYwMTeEqopTKfjMo2cOF8U.jpg") no-repeat;
@@ -282,11 +311,9 @@ header {
         font-size: 1.1em;
     }
     .add {
-        
         margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
-    
     }
     .to-top {
         display: none;
@@ -308,7 +335,6 @@ header {
     }
     .ingsearch-container, .find-recipes-container{
         text-align: center;
-        
     }
     .js-user-search {
         margin-top: 5px;
@@ -332,13 +358,11 @@ header {
         font-weight: 300;
         font-family: Arial, Helvetica, sans-serif;
         margin-left: 3px;
-        
         border-radius: 3px;
     }
     .js-ing:hover {
         cursor: pointer;
         background-color: rgb(207, 212, 179);
-        
     }
     .add, .ingsearch, .find-recipes {
         padding: 5px;

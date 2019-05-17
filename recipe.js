@@ -98,7 +98,7 @@ function displayRecipeInformation(responseJson) {
     $('.ingredients-title').text(`Ingredients:`);
     addIngredients(responseJson);
     $('.instructions').append(`${responseJson.instructions}`);
-    $('.js-results').append(`<img class="remove recipe-image" src="${responseJson.image}" height="100" width="100">`);
+    $('.recipe-pic').append(`<img class="remove recipe-image" src="${responseJson.image}" height="300" width="500">`);
 }
 function emptyResults() {
     $('.name').empty();
