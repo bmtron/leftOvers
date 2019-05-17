@@ -33,9 +33,7 @@ function handleAdd() {
 function handleBackToTop() {
     $('.to-top').click(event => {
         event.preventDefault();
-        console.log('click');
-        var main = document.getElementById("main");
-        main.scrollIntoView({behavior: "smooth", block: "start"});
+        scrollToTop();
     });
 }
 function removeSearchItem() {
@@ -147,8 +145,37 @@ function checkUserInputForNothing(input) {
     }
 }
 function scrollToResults() {
-    var result = document.getElementById("results");
-    result.scrollIntoView({behavior: "smooth", block: "end"});
+    var result = document.getElementById("results"); 
+    let safariCheck = checkBrowser();
+    if (safariCheck === true){
+        result.scrollIntoView(false);
+    }
+    else {
+        result.scrollIntoView({behavior: "smooth", block: "end"});
+    }
+}
+function scrollToTop() {
+    var main = document.getElementById("main");
+    let safariCheck = checkBrowser();
+    if (safariCheck === true){
+        main.scrollIntoView(true);
+    }
+    else {
+        main.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+}
+function checkBrowser() {
+    let navUser = navigator.userAgent;
+    let safariCheck;
+    console.log(navUser);
+    if (navUser.indexOf("iPhone") > -1) {
+        safariCheck = true;
+    }
+    else {
+        safariCheck = false;
+    }
+
+    return safariCheck;
 }
 function handleAll() {
     $(removeSearchItem);
