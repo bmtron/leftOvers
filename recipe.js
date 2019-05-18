@@ -112,7 +112,7 @@ function displayRecipeInformation(responseJson) {
     $('.ingredients-title').text(`Ingredients:`);
     addIngredients(responseJson);
     $('.instructions').append(`${responseJson.instructions}`);
-    $('.recipe-pic').append(`<img class="remove recipe-image" src="${responseJson.image}" alt="${responseJson.title}">`);
+    $('.recipe-pic').append(`<img class="remove recipe-image" src="${responseJson.image}" alt="${responseJson.title}" role="img">`);
 }
 /*Empties the results page to make room for another search*/
 function emptyResults() {
