@@ -180,6 +180,7 @@ header {
     }
     .add:hover, .ingsearch:hover, .find-recipes:hover, .to-top:hover {
         cursor: pointer;
+        background-color: rgb(133, 184, 58);
     }
     .add, .ingsearch, .find-recipes, .to-top {
         padding: 5px;
@@ -337,6 +338,10 @@ header {
     }
     .ingsearch-container, .find-recipes-container{
         text-align: center;
+    }
+    .add:hover, .ingsearch:hover, .find-recipes:hover, .to-top:hover {
+        cursor: pointer;
+        background-color: rgb(133, 184, 58);
     }
     .js-user-search {
         margin-top: 5px;
