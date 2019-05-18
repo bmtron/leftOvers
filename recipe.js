@@ -210,4 +210,5 @@ function handleAll() {
     $(handleRandomSearch);
     $(handleBackToTop);
 }
+/*The callback that starts it all...*/
 $(handleAll);
