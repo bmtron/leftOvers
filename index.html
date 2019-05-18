@@ -3,39 +3,39 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" width="device-width,initial-scale=1">
-        <meta name="description" content="A random recipe generator">
-        <title>Random Recipe Generator</title>
+        <meta name="description" content="Find a tasty solution to ingredients already in your kitchen!">
+        <title>leftOvers</title>
         <link href="recipe.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Heebo" rel="stylesheet">
     </head>
     <body>
-        <main id="main">
-            <header>
-                <section class="background-img"></section>
-                <section class='header-content'>
+        <main id="main" role="main">
+            <header role="banner">
+                <section class="background-img" role="img"></section>
+                <section class="header-content">
                     <h1>left<span class="bigO">O</span>vers</h1>
                     <h2>An intuitive app to search for tasty new meals using ingredients already in your fridge!</h2>
                     <p class="headerp">Just add the ingredients you'd like to use to the Ingredients tab, then search for a recipe!</p>
                 </section>
             </header>
-            <section class="search-container">
+            <section class="search-container" role="artice">
                 <section class="search">
-                    <form class="ingr-search">
+                    <form class="ingr-search" role="form">
                         <fieldset class="ingr-search-field">
                             <label name="ingredient-search">Add your leftovers!</label>
                             <input name="ingredients" id="ingredient-search" class="ingredients" type="text" placeholder="Chicken, rice, lemon, cream">
-                            <button class="add" type="submit">Add</button>
+                            <button class="add" type="submit" role="button">Add</button>
                         </fieldset>
                     </form>
                 </section>
                 <p class="add-ingredient"></p>
-                <section class="add-section"></section>
-                <div class="ingsearch-container"><button class="ingsearch" type="submit">Search Ingredients</button></div>
+                <section class="add-section" role="article"></section>
+                <div class="ingsearch-container"><button class="ingsearch" type="submit" role="button">Search Ingredients</button></div>
                 <p class="randp">Still not sure or just looking to try something totally new? Click the button below to find a random recipe!</p>
-                <div class="find-recipes-container"><button class="find-recipes" type="submit">Find a random recipe</button></div>
+                <div class="find-recipes-container"><button class="find-recipes" type="submit" role="button">Find a random recipe</button></div>
             </section>
         </main>
-            <section class="results hide" id="results">
+            <section class="results hide" id="results" role="article">
                 <section class="results-container">
                     <section class="js-results">
                         <p class="name"></p>
@@ -43,16 +43,15 @@
                         <p class="cal"></p>
                         <p class="prep"></p>
                         <p class="ingredients-title"></p>
-                        <ul class="ingredients"></ul>
+                        <ul class="ingredients" role="list"></ul>
                         <p class="instructions"></p>
                         <p class="err"></p>
                     </section>
                     <section class="image">
-                        <div class="recipe-pic"></div>
+                        <div class="recipe-pic" role="img"></div>
                     </section>
                 </section>
-
-                <div class="to-top-container"><button class="to-top">Back to Top</button></div>
+                <div class="to-top-container"><button class="to-top" role="button">Back to Top</button></div>
             </section>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="recipe.js"></script>
