@@ -79,7 +79,7 @@ function getIngredients(input) {
 	fetch(newUrl, HEAD)
 	.then(response => response.json())
     .then(responseJson => getRecipeFromIngredientsById(responseJson))
-    .catch(err => {$('.err').text(`Something went wrong: ${err.message}. Try adding some ingredients before you search!`)});
+    .catch(err => {$('.err').text(`Something went wrong: ${err.message}.`)});
 }
 /*Constructs a proper API url to be able to fetch a recipe based on the users listed ingredients*/
 function getUrlFromIngredients(input) {
