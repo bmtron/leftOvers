@@ -61,6 +61,7 @@ function getRandomRecipe() {
     fetch(url, HEAD)
     .then(response => response.json())
     .then(responseJson => getRandomRecipeInformationById(responseJson))
+    .catch(err => {$('.err').text(`Something is wrong: ${err.message}.`)});
 }
 /*uses Spoonacular API to retrieve a recipes details based on its ID, when the recipe is found randomly*/
 function getRandomRecipeInformationById(responseJson) {
